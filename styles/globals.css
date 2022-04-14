@@ -1,0 +1,25 @@
+body {
+  @apply font-default bg-white h-screen;
+}
+::-webkit-scrollbar {
+  @apply hidden;
+}
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+::-webkit-scrollbar-track {
+  @apply hidden;
+}
+::-webkit-scrollbar-track-piece {
+  @apply hidden;
+}
+::-webkit-scrollbar-thumb {
+  @apply hidden;
+}
+::-webkit-scrollbar-corner {
+  @apply hidden;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
