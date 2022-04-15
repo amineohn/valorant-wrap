@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Agent } from "../libs/types";
 import useSWR from "swr";
 import Navigation from "components/navigation";
+import Loading from "components/loading";
 const Home: NextPage = () => {
   const { data } = useSWR<Agent>("/api/agents", fetcher);
   return (
@@ -11,6 +12,9 @@ const Home: NextPage = () => {
       <Navigation />
       <div className="flex justify-center items-center py-4 px-4 sm:px-0 mx-auto my-auto overflow-auto">
         <div className="container">
+          <div className="flex items-center justify-center m-auto">
+            {!data && <Loading />}
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-start gap-4">
             {data?.data.map((agent, index) => (
               <>

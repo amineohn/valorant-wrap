@@ -47,6 +47,46 @@ const Navigation = () => {
         </div>
         <div className="relative group">
           <a
+            onClick={() => router.push("/maps")}
+            className={`text-neutral-100 ${
+              router.asPath === "/"
+                ? "bg-neutral-50/10"
+                : "hover:bg-neutral-50/10"
+            } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
+          >
+            Maps
+          </a>
+
+          <div
+            className={`w-full h-1 ${
+              router.asPath === "/maps"
+                ? "bg-[#FD4556]"
+                : "group-hover:bg-[#FD4556]"
+            } mt-4 rounded-lg absolute`}
+          />
+        </div>
+        <div className="relative group">
+          <a
+            onClick={() => router.push("/events")}
+            className={`text-neutral-100 ${
+              router.asPath === "/events"
+                ? "bg-neutral-50/10"
+                : "hover:bg-neutral-50/10"
+            } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
+          >
+            Events
+          </a>
+
+          <div
+            className={`w-full h-1 ${
+              router.asPath === "/events"
+                ? "bg-[#FD4556]"
+                : "group-hover:bg-[#FD4556]"
+            } mt-4 rounded-lg absolute`}
+          />
+        </div>
+        <div className="relative group">
+          <a
             onClick={() => router.push("/bundles")}
             className="text-neutral-100 hover:bg-neutral-50/10 px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer"
           >
