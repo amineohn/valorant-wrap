@@ -10,27 +10,6 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { classNames } from "utils/classes";
 
-const plans = [
-  {
-    name: "Startup",
-    ram: "12GB",
-    cpus: "6 CPUs",
-    disk: "160 GB SSD disk",
-  },
-  {
-    name: "Business",
-    ram: "16GB",
-    cpus: "8 CPUs",
-    disk: "512 GB SSD disk",
-  },
-  {
-    name: "Enterprise",
-    ram: "32GB",
-    cpus: "12 CPUs",
-    disk: "1024 GB SSD disk",
-  },
-];
-
 const Home: NextPage = () => {
   const { data } = useSWR<Seasons>("/api/seasons", fetcher);
   const { data: selectedtwo } = useSWR<SeasonsCompetitive>(
@@ -43,15 +22,15 @@ const Home: NextPage = () => {
   return (
     <>
       <Navigation />
-      <div className="flex justify-center items-center py-4 px-4 sm:px-0 mx-auto my-auto overflow-auto">
+      <div className="flex items-center justify-center px-4 py-4 mx-auto my-auto overflow-auto sm:px-0">
         <div className="container">
           <div className="flex items-center justify-end m-auto">
-            <Menu as="div" className="relative inline-block text-left py-4">
+            <Menu as="div" className="relative inline-block py-4 text-left">
               <div>
                 <Menu.Button className="inline-flex justify-center w-full shadow-sm px-4 py-2 bg-[#FD4556] text-sm font-semibold uppercase text-white focus:outline-none">
                   Filter
                   <ChevronDownIcon
-                    className="-mr-1 ml-2 h-5 w-5"
+                    className="w-5 h-5 ml-2 -mr-1"
                     aria-hidden="true"
                   />
                 </Menu.Button>
@@ -66,7 +45,7 @@ const Home: NextPage = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border-t-red-500 border-4 border-l-transparent border-r-transparent border-b-transparent focus:outline-none z-50">
+                <Menu.Items className="absolute right-0 z-50 w-56 mt-2 origin-top-right bg-white border-4 rounded-md shadow-lg border-t-red-500 border-l-transparent border-r-transparent border-b-transparent focus:outline-none">
                   <div className="py-1">
                     <Menu.Item>
                       {({ active }) => (
@@ -104,7 +83,7 @@ const Home: NextPage = () => {
             </Menu>
             {!data && <Loading />}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-start gap-4">
+          <div className="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {!selected &&
               data?.data?.map((tiers, index) => (
                 <>
@@ -112,9 +91,9 @@ const Home: NextPage = () => {
                     key={index}
                     className="relative inline-flex px-6 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                   >
-                    <span className="w-full h-full bg-slate-800 absolute left-0 -translate-x-full ease-out duration-500 transition-all mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                    <div className="inline-flex space-x-5 items-center relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-                      <div className="px-4 py-2 items-center text-gray-50 ">
+                    <span className="absolute left-0 w-full h-full transition-all duration-500 ease-out -translate-x-full bg-slate-800 mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                    <div className="relative inline-flex items-center w-full space-x-5 text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <div className="items-center px-4 py-2 text-gray-50 ">
                         <h1 className="text-xl font-bold">
                           {tiers.displayName}
                         </h1>
@@ -131,29 +110,29 @@ const Home: NextPage = () => {
                     key={index}
                     className="relative inline-flex px-6 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                   >
-                    <span className="w-full h-full bg-slate-800 absolute left-0 -translate-x-full ease-out duration-500 transition-all mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0">
+                    <span className="absolute left-0 w-full h-full transition-all duration-500 ease-out -translate-x-full bg-slate-800 mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0">
                       <div>
                         <img
                           src={tiers.displayIcon}
-                          className="w-40 h-40 z-50"
+                          className="z-50 w-40 h-40"
                         />
                       </div>
                     </span>
                     <div>
-                      <img src={tiers.displayIcon} className="w-56 h-40 z-50" />
+                      <img src={tiers.displayIcon} className="z-50 w-56 h-40" />
                     </div>
-                    <div className="inline-flex space-x-5 items-center relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-                      <div className="px-4 py-2 flex flex-col items-center text-gray-50 ">
+                    <div className="relative inline-flex items-center w-full space-x-5 text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <div className="flex flex-col items-center px-4 py-2 text-gray-50 ">
                         <div className="flex flex-col items-center">
                           {tiers.winsRequired && (
                             <>
-                              <div className="inline-flex space-x-3 items-center">
+                              <div className="inline-flex items-center space-x-3">
                                 <svg
                                   id="Layer_1"
                                   data-name="Layer 1"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 512 512"
-                                  className="text-white w-8 h-8"
+                                  className="w-8 h-8 text-white"
                                 >
                                   <path
                                     fill="currentColor"

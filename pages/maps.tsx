@@ -19,12 +19,12 @@ const Home: NextPage = () => {
   return (
     <>
       <Navigation />
-      <div className="flex justify-center items-center py-4 px-4 sm:px-0 mx-auto my-auto overflow-auto">
+      <div className="flex items-center justify-center px-4 py-4 mx-auto my-auto overflow-auto sm:px-0">
         <div className="container">
           <div className="flex items-center justify-center m-auto">
             {!data && <Loading />}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-start gap-4">
+          <div className="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {data?.data.map((map) => (
               <>
                 {map.displayName === "Ascent" && (
@@ -607,13 +607,13 @@ const Home: NextPage = () => {
                   key={map.uuid}
                   className="relative flex flex-col pb-2 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                 >
-                  <span className="w-full h-full bg-slate-800 absolute left-0 -translate-x-full ease-out duration-500 transition-all mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                  <div className="flex flex-col space-y-2 items-center relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+                  <span className="absolute left-0 w-full h-full transition-all duration-500 ease-out -translate-x-full bg-slate-800 mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                  <div className="relative flex flex-col items-center w-full space-y-2 text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
                     <div>
                       <img src={map.splash} className="w-full h-full" />
                       <img src={map.displayIcon} className="w-full h-full" />
                     </div>
-                    <div className="px-4 py-2 items-center text-gray-50">
+                    <div className="items-center px-4 py-2 text-gray-50">
                       <h1 className="text-xl font-bold">{map.displayName}</h1>
                       <p className="text-sm">{map.coordinates}</p>
                     </div>
@@ -623,7 +623,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -634,7 +634,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -645,7 +645,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -656,7 +656,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -667,7 +667,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -678,7 +678,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -689,7 +689,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>
@@ -700,7 +700,7 @@ const Home: NextPage = () => {
                         className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
                       >
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                        <span className="relative w-full text-left text-white uppercase transition-colors duration-300 ease-in-out group-hover:text-white">
                           details
                         </span>
                       </button>

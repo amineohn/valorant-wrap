@@ -8,8 +8,8 @@ const Navigation = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   return (
-    <nav className="py-6 px-6 flex items-center justify-between bg-neutral-900 sticky top-0 z-50">
-      <div className="inline-flex space-x-2 items-center">
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-6 py-6 bg-neutral-900">
+      <div className="inline-flex items-center space-x-2">
         <div className="pr-3">
           <button onClick={() => router.push("/")}>
             <svg
@@ -129,7 +129,7 @@ const Navigation = () => {
       <div className="">
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-neutral-800 text-sm font-semibold text-white focus:outline-none">
+            <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md bg-neutral-800 focus:outline-none">
               Yoow
               <ChevronDownIcon
                 className={`-mr-1 ml-2 h-5 w-5 ${
@@ -149,7 +149,7 @@ const Navigation = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-neutral-800 ring-1 ring-black ring-opacity-5 focus:outline-none border-t-red-500 border-4 border-l-transparent border-r-transparent border-b-transparent">
+            <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right border-4 rounded-md shadow-lg bg-neutral-800 ring-1 ring-black ring-opacity-5 focus:outline-none border-t-red-500 border-l-transparent border-r-transparent border-b-transparent">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (
