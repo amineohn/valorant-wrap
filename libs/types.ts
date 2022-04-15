@@ -235,6 +235,29 @@ export interface Seasons {
   ];
 }
 
+export interface SeasonsCompetitive {
+  data: [
+    {
+      uuid: string;
+      displayName: string;
+      startTime: string;
+      endTime: string;
+      seasonUuid: string;
+      competitiveTiersUuid: string;
+      borders: [
+        {
+          uuid: string;
+          level: number;
+          winsRequired: number;
+          displayIcon: string;
+          smallIcon: number;
+          assetPath: string;
+        },
+      ];
+    },
+  ];
+}
+
 export interface Sprays {
   data: [
     {

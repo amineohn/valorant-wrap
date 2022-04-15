@@ -105,6 +105,26 @@ const Navigation = () => {
             } mt-4 rounded-lg absolute`}
           />
         </div>
+        <div className="relative group">
+          <a
+            onClick={() => router.push("/seasons")}
+            className={`text-neutral-100 ${
+              router.asPath === "/seasons"
+                ? "bg-neutral-50/10"
+                : "hover:bg-neutral-50/10"
+            } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
+          >
+            Seasons
+          </a>
+
+          <div
+            className={`w-full h-1 ${
+              router.asPath === "/seasons"
+                ? "bg-[#FD4556]"
+                : "group-hover:bg-[#FD4556]"
+            } mt-4 rounded-lg absolute`}
+          />
+        </div>
       </div>
       <div className="">
         <Menu as="div" className="relative inline-block text-left">
