@@ -29,7 +29,7 @@ const Navigation = () => {
           <a
             onClick={() => router.push("/agents")}
             className={`text-neutral-100 ${
-              router.asPath === "/"
+              router.asPath === "/agents"
                 ? "bg-neutral-50/10"
                 : "hover:bg-neutral-50/10"
             } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
@@ -39,7 +39,7 @@ const Navigation = () => {
 
           <div
             className={`w-full h-1 ${
-              router.asPath === "/"
+              router.asPath === "/agents"
                 ? "bg-[#FD4556]"
                 : "group-hover:bg-[#FD4556]"
             } mt-4 rounded-lg absolute`}
@@ -88,16 +88,21 @@ const Navigation = () => {
         <div className="relative group">
           <a
             onClick={() => router.push("/bundles")}
-            className="text-neutral-100 hover:bg-neutral-50/10 px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer"
+            className={`text-neutral-100 ${
+              router.asPath === "/bundles"
+                ? "bg-neutral-50/10"
+                : "hover:bg-neutral-50/10"
+            } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
           >
             Bundles
           </a>
+
           <div
             className={`w-full h-1 ${
               router.asPath === "/bundles"
                 ? "bg-[#FD4556]"
                 : "group-hover:bg-[#FD4556]"
-            } group-hover:bg-[#FD4556] mt-4 rounded-lg absolute`}
+            } mt-4 rounded-lg absolute`}
           />
         </div>
       </div>
