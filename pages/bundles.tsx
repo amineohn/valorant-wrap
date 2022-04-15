@@ -1,11 +1,11 @@
 import fetcher from "libs/fetcher";
 import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import { Agent } from "../libs/types";
+import { Bundles } from "../libs/types";
 import useSWR from "swr";
 import Navigation from "components/navigation";
 const Home: NextPage = () => {
-  const { data } = useSWR<Agent>("/api/agents", fetcher);
+  const { data } = useSWR<Bundles>("/api/bundles", fetcher);
   return (
     <>
       <Navigation />
@@ -26,17 +26,6 @@ const Home: NextPage = () => {
                     <div className="px-4 py-2 items-center text-gray-50 ">
                       <h1 className="text-xl font-bold">{agent.displayName}</h1>
                       <p className="text-sm">{agent.description}</p>
-                      <div className="inline-flex space-x-4 items-center mt-3">
-                        <img
-                          src={agent.role?.displayIcon}
-                          alt=""
-                          className="w-5 h-5"
-                        />
-                        <div>
-                          <p className="text-sm">{agent.role?.displayName}</p>
-                          <p className="text-sm">{agent.role?.description}</p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

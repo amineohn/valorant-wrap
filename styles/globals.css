@@ -1,5 +1,5 @@
 body {
-  @apply font-default bg-white h-screen;
+  @apply font-default bg-[#FFFBF5] h-screen;
 }
 ::-webkit-scrollbar {
   @apply hidden;
