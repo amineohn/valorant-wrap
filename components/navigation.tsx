@@ -1,7 +1,12 @@
 import { useRouter } from "next/router";
+import { Fragment, useState } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import { classNames } from "utils/classes";
 
 const Navigation = () => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   return (
     <nav className="py-6 px-6 flex items-center justify-between bg-neutral-900 sticky top-0 z-50">
       <div className="inline-flex space-x-2 items-center">
@@ -56,7 +61,81 @@ const Navigation = () => {
           />
         </div>
       </div>
-      <div className="text-white">lorl</div>
+      <div className="">
+        <Menu as="div" className="relative inline-block text-left">
+          <div>
+            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-neutral-800 text-sm font-semibold text-white focus:outline-none">
+              Yoow
+              <ChevronDownIcon
+                className={`-mr-1 ml-2 h-5 w-5 ${
+                  open ? "rotate-180" : "rotate-0"
+                }`}
+                aria-hidden="true"
+              />
+            </Menu.Button>
+          </div>
+
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-neutral-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      className={classNames(
+                        active
+                          ? "bg-neutral-50/10 text-white px-1 py-2 rounded-lg transition-all ease-in-out"
+                          : "text-white transition-all ease-in-out",
+                        "block px-4 py-2 text-sm",
+                      )}
+                    >
+                      Account settings
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      className={classNames(
+                        active
+                          ? "bg-neutral-50/10 text-white px-1 py-2 rounded-lg transition-all ease-in-out"
+                          : "text-white transition-all ease-in-out",
+                        "block px-4 py-2 text-sm",
+                      )}
+                    >
+                      Support
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      className={classNames(
+                        active
+                          ? "bg-neutral-50/10 text-white px-1 py-2 rounded-lg transition-all ease-in-out"
+                          : "text-white transition-all ease-in-out",
+                        "block px-4 py-2 text-sm",
+                      )}
+                    >
+                      License
+                    </a>
+                  )}
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
+      </div>
     </nav>
   );
 };
