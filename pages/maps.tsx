@@ -9,6 +9,13 @@ import Loading from "components/loading";
 const Home: NextPage = () => {
   const { data } = useSWR<Maps>("/api/maps", fetcher);
   const [open, setOpen] = useState(false);
+  const [openSplit, setOpenSplit] = useState(false);
+  const [openBind, setOpenBind] = useState(false);
+  const [openBreeze, setOpenBreeze] = useState(false);
+  const [openFracture, setOpenFracture] = useState(false);
+  const [openIcebox, setOpenIcebox] = useState(false);
+  const [openRange, setOpenRange] = useState(false);
+  const [openHaven, setOpenHaven] = useState(false);
   return (
     <>
       <Navigation />
@@ -18,80 +25,586 @@ const Home: NextPage = () => {
             {!data && <Loading />}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-start gap-4">
-            {data?.data.map((map, index) => (
+            {data?.data.map((map) => (
               <>
-                {() => {
-                  switch (map.displayName) {
-                    case "Ascent":
-                      return (
-                        <Transition appear show={open} as={Fragment}>
-                          <Dialog
-                            as="div"
-                            className="fixed inset-0 z-10 overflow-y-auto"
-                            onClose={() => setOpen(false)}
-                          >
-                            <div className="min-h-screen px-4 text-center">
-                              <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                              >
-                                <Dialog.Overlay className="fixed inset-0" />
-                              </Transition.Child>
-                              <span
-                                className="inline-block h-screen align-middle"
-                                aria-hidden="true"
-                              >
-                                &#8203;
-                              </span>
-                              <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                              >
-                                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
-                                  <Dialog.Title
-                                    as="h3"
-                                    className="text-lg font-medium leading-6 text-gray-900"
-                                  >
-                                    {map.displayName}
-                                  </Dialog.Title>
-                                  <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
-                                      {map.coordinates}
-                                    </p>
-                                  </div>
-
-                                  <div className="mt-4">
-                                    <button
-                                      onClick={() => setOpen(false)}
-                                      className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group"
-                                    >
-                                      <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                                      <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
-                                        Close
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </Transition.Child>
+                {map.displayName === "Ascent" && (
+                  <Transition show={open} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpen(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
                             </div>
-                          </Dialog>
-                        </Transition>
-                      );
-                  }
-                }}
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpen(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Fracture" && (
+                  <Transition show={openFracture} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenFracture(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenFracture(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Split" && (
+                  <Transition show={openSplit} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenSplit(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenSplit(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Bind" && (
+                  <Transition show={openBind} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenBind(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenBind(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Breeze" && (
+                  <Transition show={openBreeze} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenBreeze(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenBreeze(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Icebox" && (
+                  <Transition show={openIcebox} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenIcebox(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenIcebox(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "The Range" && (
+                  <Transition show={openRange} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenRange(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenRange(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
+                {map.displayName === "Haven" && (
+                  <Transition show={openHaven} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="fixed inset-0 z-10 overflow-y-auto"
+                      onClose={() => setOpenHaven(false)}
+                    >
+                      <div className="min-h-screen px-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Dialog.Overlay className="fixed inset-0" />
+                        </Transition.Child>
+                        <span
+                          className="inline-block h-screen align-middle"
+                          aria-hidden="true"
+                        >
+                          &#8203;
+                        </span>
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              {map.displayName}
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <div className="flex flex-col">
+                                <p className="text-sm text-gray-500 ">
+                                  Coordinates: {map.coordinates}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier X:{map.xMultiplier}
+                                </p>
+                                <p className="text-sm text-gray-500 ">
+                                  Multiplier Y:{map.yMultiplier}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                              <button
+                                onClick={() => setOpenHaven(false)}
+                                className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-[#FD4556] group focus:outline-none"
+                              >
+                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-slate-800 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white">
+                                  Close
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </Transition.Child>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                )}
                 <div
-                  key={index}
-                  onClick={() => setOpen(true)}
+                  key={map.uuid}
                   className="relative flex flex-col pb-2 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                 >
                   <span className="w-full h-full bg-slate-800 absolute left-0 -translate-x-full ease-out duration-500 transition-all mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
@@ -103,17 +616,95 @@ const Home: NextPage = () => {
                     <div className="px-4 py-2 items-center text-gray-50">
                       <h1 className="text-xl font-bold">{map.displayName}</h1>
                       <p className="text-sm">{map.coordinates}</p>
-                      {/* <p className="text-sm">
-                        {map.callouts?.map((callout, index) => {
-                          return (
-                            <p>
-                              {callout.location}
-                              {callout.regionName}
-                            </p>
-                          );
-                        })}
-                      </p> */}
                     </div>
+                    {map.displayName === "Ascent" && (
+                      <button
+                        onClick={() => setOpen(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Split" && (
+                      <button
+                        onClick={() => setOpenSplit(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Fracture" && (
+                      <button
+                        onClick={() => setOpenFracture(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Bind" && (
+                      <button
+                        onClick={() => setOpenBind(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Breeze" && (
+                      <button
+                        onClick={() => setOpenBreeze(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Icebox" && (
+                      <button
+                        onClick={() => setOpenIcebox(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "The Range" && (
+                      <button
+                        onClick={() => setOpenRange(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
+                    {map.displayName === "Haven" && (
+                      <button
+                        onClick={() => setOpenHaven(true)}
+                        className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-slate-800 group focus:outline-none"
+                      >
+                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-[#FD4556] shadow absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                        <span className="relative w-full text-left text-white transition-colors duration-300 ease-in-out group-hover:text-white uppercase">
+                          details
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </>
