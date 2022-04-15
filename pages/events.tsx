@@ -16,10 +16,10 @@ const Home: NextPage = () => {
             {!data && <Loading />}
           </div>
           <div className="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {data?.data.map((event, index) => (
+            {data?.data.map((event) => (
               <>
                 <div
-                  key={index}
+                  key={event.uuid}
                   className="relative inline-flex px-6 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                 >
                   <span className="absolute left-0 w-full h-full transition-all duration-500 ease-out -translate-x-full bg-slate-800 mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>

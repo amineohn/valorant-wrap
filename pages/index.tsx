@@ -12,10 +12,10 @@ const Home: NextPage = () => {
       <div className="flex items-center justify-center px-4 py-4 mx-auto my-auto overflow-auto sm:px-0">
         <div className="container">
           <div className="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {data?.data.map((agent, index) => (
+            {data?.data.map((agent) => (
               <>
                 <div
-                  key={index}
+                  key={agent.uuid}
                   className="relative inline-flex px-6 overflow-hidden font-medium transition-all bg-[#FD4556] group"
                 >
                   <span className="absolute left-0 w-full h-full transition-all duration-500 ease-out -translate-x-full bg-slate-800 mb-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
