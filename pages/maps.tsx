@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Navigation />
-      <div className="flex items-center justify-center px-4 py-4 mx-auto my-auto overflow-auto sm:px-0">
+      <div className="flex items-center justify-center px-4 py-4 mx-auto my-auto overflow-auto sm:px-0 slide-in-fwd-top">
         <div className="container">
           <div className="flex items-center justify-center m-auto">
             {!data && <Loading />}
