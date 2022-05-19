@@ -11,6 +11,24 @@ const Navigation = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { data } = useSWR<Version>("api/version", fetcher);
+  const items = [
+    {
+      name: "Agents",
+      path: "/agents",
+    },
+    {
+      name: "Events",
+      path: "/events",
+    },
+    {
+      name: "Seasons",
+      path: "/seasons",
+    },
+    {
+      name: "Maps",
+      path: "/maps",
+    },
+  ];
   return (
     <>
       <Transition show={open} as={Fragment}>
@@ -98,87 +116,29 @@ const Navigation = () => {
               </svg>
             </button>
           </div>
-          <div className="relative group">
-            <a
-              onClick={() => router.push("/agents")}
-              className={`text-neutral-100 ${
-                router.asPath === "/agents"
-                  ? "bg-neutral-50/10"
-                  : "hover:bg-neutral-50/10"
-              } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
-            >
-              Agents
-            </a>
+          {items.map((item) => (
+            <div className="relative group">
+              <a
+                onClick={() => router.push(item.path)}
+                className={`text-neutral-100 ${
+                  router.asPath === item.path
+                    ? "bg-neutral-50/10"
+                    : "hover:bg-neutral-50/10"
+                } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
+              >
+                {item.name}
+              </a>
 
-            <div
-              className={`w-full h-1 ${
-                router.asPath === "/agents"
-                  ? "bg-[#FD4556]"
-                  : "group-hover:bg-[#FD4556]"
-              } mt-4 rounded-lg absolute`}
-            />
-          </div>
-          <div className="relative group">
-            <a
-              onClick={() => router.push("/maps")}
-              className={`text-neutral-100 ${
-                router.asPath === "/"
-                  ? "bg-neutral-50/10"
-                  : "hover:bg-neutral-50/10"
-              } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
-            >
-              Maps
-            </a>
+              <div
+                className={`w-full h-1 ${
+                  router.asPath === item.path
+                    ? "bg-[#FD4556]"
+                    : "group-hover:bg-[#FD4556]"
+                } mt-4 rounded-lg absolute`}
+              />
+            </div>
+          ))}
 
-            <div
-              className={`w-full h-1 ${
-                router.asPath === "/maps"
-                  ? "bg-[#FD4556]"
-                  : "group-hover:bg-[#FD4556]"
-              } mt-4 rounded-lg absolute`}
-            />
-          </div>
-          <div className="relative group">
-            <a
-              onClick={() => router.push("/events")}
-              className={`text-neutral-100 ${
-                router.asPath === "/events"
-                  ? "bg-neutral-50/10"
-                  : "hover:bg-neutral-50/10"
-              } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
-            >
-              Events
-            </a>
-
-            <div
-              className={`w-full h-1 ${
-                router.asPath === "/events"
-                  ? "bg-[#FD4556]"
-                  : "group-hover:bg-[#FD4556]"
-              } mt-4 rounded-lg absolute`}
-            />
-          </div>
-
-          <div className="relative group">
-            <a
-              onClick={() => router.push("/seasons")}
-              className={`text-neutral-100 ${
-                router.asPath === "/seasons"
-                  ? "bg-neutral-50/10"
-                  : "hover:bg-neutral-50/10"
-              } px-4 py-2 rounded-md font-semibold text-md uppercase cursor-pointer`}
-            >
-              Seasons
-            </a>
-
-            <div
-              className={`w-full h-1 ${
-                router.asPath === "/seasons"
-                  ? "bg-[#FD4556]"
-                  : "group-hover:bg-[#FD4556]"
-              } mt-4 rounded-lg absolute`}
-            />
-          </div>
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-semibold text-white uppercase border border-transparent rounded-md focus:outline-none">
