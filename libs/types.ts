@@ -31,7 +31,7 @@ export interface Agent {
           displayName: string;
           description: string;
           displayIcon: string;
-        }
+        },
       ];
       voiceLine: {
         minDuration: number;
@@ -41,10 +41,10 @@ export interface Agent {
             id: number;
             wwise: string;
             wave: string;
-          }
+          },
         ];
       };
-    }
+    },
   ];
 }
 
@@ -62,45 +62,7 @@ export interface Bundles {
       displayIcon2: string;
       verticalPromoImage: string;
       assetPath: string;
-    }
-  ];
-}
-
-export interface Contracts {
-  data: [
-    {
-      uuid: string;
-      displayName: string;
-      displayIcon: string;
-      shipIt: boolean;
-      freeRewardScheduleUuid: string;
-      content: {
-        relationType: string;
-        relationUuid: string;
-        chapters: [
-          {
-            isEpilogue: boolean;
-            levels: [
-              {
-                reward: {
-                  type: string;
-                  uuid: string;
-                  amount: 1;
-                  isHighlighted: boolean;
-                };
-                xp: number;
-                vpCost: number;
-                isPurchasableWithVP: boolean;
-              }
-            ];
-            freeRewards: null;
-          }
-        ];
-        premiumRewardScheduleUuid: null;
-        premiumVPCost: number;
-      };
-      assetPath: string;
-    }
+    },
   ];
 }
 
@@ -113,7 +75,7 @@ export interface Events {
       startTime: string;
       endTime: string;
       assetPath: string;
-    }
+    },
   ];
 }
 
@@ -132,17 +94,17 @@ export interface GameModes {
         {
           featureName: string;
           state: boolean;
-        }
+        },
       ];
       gameRuleBoolOverrides: [
         {
           ruleName: string;
           state: boolean;
-        }
+        },
       ];
       displayIcon: string;
       assetPath: string;
-    }
+    },
   ];
 }
 export interface CompetitiveTiers {
@@ -160,7 +122,7 @@ export interface CompetitiveTiers {
       largeIcon: string;
       rankTriangleDownIcon: string;
       rankTriangleUpIcon: string;
-    }
+    },
   ];
   assetPath: string;
 }
@@ -187,9 +149,46 @@ export interface Maps {
             x: number;
             y: number;
           };
-        }
+        },
       ];
-    }
+    },
+  ];
+}
+export interface Contracts {
+  data: [
+    {
+      uuid: string;
+      displayName: string;
+      displayIcon: string;
+      shipIt: boolean;
+      freeRewardScheduleUuid: string;
+      content: {
+        relationType: string;
+        relationUuid: string;
+        chapters: [
+          {
+            isEpilogue: boolean;
+            levels: [
+              {
+                reward: {
+                  type: string;
+                  uuid: string;
+                  amount: number;
+                  isHighlighted: boolean;
+                };
+                xp: number;
+                vpCost: number;
+                isPurchasableWithVP: boolean;
+              },
+            ];
+            freeRewards: string[];
+          },
+        ];
+        premiumRewardScheduleUuid: string;
+        premiumVPCost: number;
+      };
+      assetPath: string;
+    },
   ];
 }
 
@@ -205,7 +204,7 @@ export interface PlayerCards {
       wideArt: string;
       largeArt: string;
       assetPath: string;
-    }
+    },
   ];
 }
 
@@ -217,7 +216,7 @@ export interface PlayerTitles {
       titleText: string;
       isHiddenIfNotOwned: boolean;
       assetPath: string;
-    }
+    },
   ];
 }
 
@@ -231,7 +230,7 @@ export interface Seasons {
       endTime: string;
       parentUuid: string;
       assetPath: string;
-    }
+    },
   ];
 }
 
@@ -252,12 +251,11 @@ export interface SeasonsCompetitive {
           displayIcon: string;
           smallIcon: number;
           assetPath: string;
-        }
+        },
       ];
-    }
+    },
   ];
 }
-
 export interface Sprays {
   data: [
     {
@@ -278,9 +276,9 @@ export interface Sprays {
           displayName: string;
           displayIcon: string;
           assetPath: string;
-        }
+        },
       ];
-    }
+    },
   ];
 }
 export interface Version {
@@ -340,7 +338,7 @@ export interface Weapons {
             headDamage: number;
             bodyDamage: number;
             legDamage: number;
-          }
+          },
         ];
       };
       shopData: {
@@ -375,7 +373,7 @@ export interface Weapons {
               swatch: string;
               streamedVideo: string;
               assetPath: string;
-            }
+            },
           ];
           levels: [
             {
@@ -385,10 +383,10 @@ export interface Weapons {
               displayIcon: string;
               streamedVideo: string;
               assetPath: string;
-            }
+            },
           ];
-        }
+        },
       ];
-    }
+    },
   ];
 }

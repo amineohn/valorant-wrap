@@ -181,7 +181,7 @@ const Navigation = () => {
           </div>
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <Menu.Button className="inline-flex uppercase justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md  focus:outline-none">
+              <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-semibold text-white uppercase border border-transparent rounded-md focus:outline-none">
                 Weapons
                 <ChevronDownIcon
                   className={`-mr-1 ml-2 h-5 w-5 ${
@@ -211,7 +211,7 @@ const Navigation = () => {
                           active
                             ? "bg-neutral-50/10 text-white px-1 py-2 rounded-lg transition-all ease-in-out"
                             : "text-white transition-all ease-in-out",
-                          "block px-4 py-2 text-sm relative cursor-pointer"
+                          "block px-4 py-2 text-sm relative cursor-pointer",
                         )}
                       >
                         Package Bundles
@@ -226,7 +226,7 @@ const Navigation = () => {
                           active
                             ? "bg-neutral-50/10 text-white px-1 py-2 rounded-lg transition-all ease-in-out"
                             : "text-white transition-all ease-in-out",
-                          "block px-4 py-2 text-sm relative cursor-pointer"
+                          "block px-4 py-2 text-sm relative cursor-pointer",
                         )}
                       >
                         Weapons
